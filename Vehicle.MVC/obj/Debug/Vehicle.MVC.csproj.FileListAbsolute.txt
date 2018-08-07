@@ -115,4 +115,13 @@ C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\bin\EntityFramework.xml
 C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\obj\Debug\Vehicle.MVC.csproj.CoreCompileInputs.cache
 C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\obj\Debug\Vehicle.MVC.dll
 C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\obj\Debug\Vehicle.MVC.pdb
-C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\obj\Debug\Vehicle.MVC.csprojResolveAssemblyReference.cache
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\bin\EntityFramework.SqlServer.dll
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\bin\Vehicle.Models.Common.dll
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\bin\Vehicle.Models.dll
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\bin\Vehicle.Models.Common.pdb
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\bin\Vehicle.Models.Common.dll.config
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\bin\Vehicle.Models.pdb
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\bin\Vehicle.Models.dll.config
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\bin\EntityFramework.SqlServer.xml
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\obj\Debug\Vehicle.MVC.csprojAssemblyReference.cache
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.MVC\obj\Debug\Vehicle.MVC.csproj.CopyComplete

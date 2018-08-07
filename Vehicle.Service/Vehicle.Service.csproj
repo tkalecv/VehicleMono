@@ -60,14 +60,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\VehicleContext.cs" />
-    <Compile Include="Models\VehicleModel.cs" />
-    <Compile Include="Models\VehicleMake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VehicleMakeService.cs" />
     <Compile Include="VehicleModelService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Vehicle.Models.Common\Vehicle.Models.Common.csproj">
+      <Project>{d070a90d-081c-4456-b200-5bf636f3eb9f}</Project>
+      <Name>Vehicle.Models.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vehicle.Models\Vehicle.Models.csproj">
+      <Project>{d5652faf-3723-415c-82c8-588f1b1de994}</Project>
+      <Name>Vehicle.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vehicle\Vehicle.Service.Common.csproj">
       <Project>{26475da0-be70-4fea-82c7-fdd6de65f01b}</Project>
       <Name>Vehicle.Service.Common</Name>

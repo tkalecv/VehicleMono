@@ -37,3 +37,11 @@ C:\Users\Valentin\source\repos\Vehicle\Vehicle\bin\Debug\System.ValueTuple.xml
 C:\Users\Valentin\source\repos\Vehicle\Vehicle\obj\Debug\Vehicle.Service.Common.csproj.CoreCompileInputs.cache
 C:\Users\Valentin\source\repos\Vehicle\Vehicle\obj\Debug\Vehicle.dll
 C:\Users\Valentin\source\repos\Vehicle\Vehicle\obj\Debug\Vehicle.pdb
+C:\Users\Valentin\source\repos\Vehicle\Vehicle\bin\Debug\Vehicle.Models.Common.dll
+C:\Users\Valentin\source\repos\Vehicle\Vehicle\bin\Debug\Vehicle.Models.dll
+C:\Users\Valentin\source\repos\Vehicle\Vehicle\bin\Debug\Vehicle.Models.Common.pdb
+C:\Users\Valentin\source\repos\Vehicle\Vehicle\bin\Debug\Vehicle.Models.Common.dll.config
+C:\Users\Valentin\source\repos\Vehicle\Vehicle\bin\Debug\Vehicle.Models.pdb
+C:\Users\Valentin\source\repos\Vehicle\Vehicle\bin\Debug\Vehicle.Models.dll.config
+C:\Users\Valentin\source\repos\Vehicle\Vehicle\obj\Debug\Vehicle.Service.Common.csprojAssemblyReference.cache
+C:\Users\Valentin\source\repos\Vehicle\Vehicle\obj\Debug\Vehicle.Service.Common.csproj.CopyComplete

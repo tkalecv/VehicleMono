@@ -62,8 +62,6 @@
   <ItemGroup>
     <Compile Include="IVehicleMakeService.cs" />
     <Compile Include="IVehicleModelService.cs" />
-    <Compile Include="Models.Common\IVehicleMake.cs" />
-    <Compile Include="Models.Common\IVehicleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +70,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PagedList.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vehicle.Models.Common\Vehicle.Models.Common.csproj">
+      <Project>{d070a90d-081c-4456-b200-5bf636f3eb9f}</Project>
+      <Name>Vehicle.Models.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vehicle.Models\Vehicle.Models.csproj">
+      <Project>{d5652faf-3723-415c-82c8-588f1b1de994}</Project>
+      <Name>Vehicle.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

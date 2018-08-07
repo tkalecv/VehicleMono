@@ -4,8 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vehicle.Models;
 using Vehicle.Models.Common;
-using Vehicle.Service.Models;
+using Vehicle.Models.Context;
 
 namespace Vehicle.Service
 {
@@ -14,7 +15,6 @@ namespace Vehicle.Service
         VehicleContext context = new VehicleContext();
 
 
-        VehicleMake klkl = new VehicleMake();
 
         public void Create(IVehicleMake vMake)
         {

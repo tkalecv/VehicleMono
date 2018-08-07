@@ -21,7 +21,6 @@ C:\Users\Valentin\source\repos\Vehicle.Service.Common\Vehicle.Service\bin\Debug\
 C:\Users\Valentin\source\repos\Vehicle.Service.Common\Vehicle.Service\bin\Debug\System.ValueTuple.xml
 C:\Users\Valentin\source\repos\Vehicle.Service.Common\Vehicle.Service\obj\Debug\Vehicle.Service.dll
 C:\Users\Valentin\source\repos\Vehicle.Service.Common\Vehicle.Service\obj\Debug\Vehicle.Service.pdb
-C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\obj\Debug\Vehicle.Service.csprojResolveAssemblyReference.cache
 C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\obj\Debug\Vehicle.Service.csproj.CoreCompileInputs.cache
 C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\obj\Debug\Vehicle.Service.dll
 C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\obj\Debug\Vehicle.Service.pdb
@@ -44,3 +43,11 @@ C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\bin\Debug\EntityFramework
 C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\bin\Debug\PagedList.xml
 C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\bin\Debug\PagedList.Mvc.xml
 C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\bin\Debug\System.ValueTuple.xml
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\obj\Debug\Vehicle.Service.csprojAssemblyReference.cache
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\bin\Debug\Vehicle.Models.Common.dll
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\bin\Debug\Vehicle.Models.dll
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\bin\Debug\Vehicle.Models.Common.pdb
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\bin\Debug\Vehicle.Models.Common.dll.config
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\bin\Debug\Vehicle.Models.pdb
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\bin\Debug\Vehicle.Models.dll.config
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.Service\obj\Debug\Vehicle.Service.csproj.CopyComplete
