@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Vehicle
         void Create(IVehicleMake vMake);
         void Update(IVehicleMake vMake);
         void Delete(IVehicleMake vMake);
-        IList<IVehicleMake> GetAll();
+        IPagedList<IVehicleMake> GetAll(string sortOrder, string searchString, int? page);
         IVehicleMake FindByID(int? id);
     }
 }

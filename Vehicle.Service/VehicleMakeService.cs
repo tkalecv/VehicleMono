@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -35,9 +36,39 @@ namespace Vehicle.Service
             context.SaveChanges();
         }
 
-        public IList<IVehicleMake> GetAll()
+        public IPagedList<IVehicleMake> GetAll(string sortOrder, string searchString, int? page)
         {
-            return AutoMapper.Mapper.Map<IList<IVehicleMake>>(context.VehicleMakes.ToList());
+            var list = context.VehicleMakes.AsEnumerable();
+
+
+            //Search
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                list = list.Where(x => x.Name.Contains(searchString)
+                                || x.Abrv.Contains(searchString));
+            }
+
+            //Sorting
+            switch(sortOrder)
+            {
+                case "name_desc":
+                    list = list.OrderByDescending(x=> x.Name);
+                    break;
+                case "Abrv":
+                    list = list.OrderByDescending(x => x.Abrv);
+                    break;
+                case "Vehicle_models":
+                    list = list.OrderByDescending(x => x.VehicleModels);
+                    break;
+                default:
+                    list = list.OrderBy(x=> x.ID);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
+            return list.ToPagedList(pageNumber, pageSize);
         }
 
         public IVehicleMake FindByID (int? id)
