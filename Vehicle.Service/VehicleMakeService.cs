@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Vehicle.Models;
 using Vehicle.Models.Common;
+using Vehicle.Models.Common.Paging__Sorting__Filtering;
 using Vehicle.Models.Context;
 
 namespace Vehicle.Service
@@ -36,20 +37,20 @@ namespace Vehicle.Service
             context.SaveChanges();
         }
 
-        public IPagedList<IVehicleMake> GetAll(string sortOrder, string searchString, int? page)
+        public IPagedList<IVehicleMake> GetAll(ISorting sort, IFiltering search, IPaging paging)
         {
             var list = context.VehicleMakes.AsEnumerable();
 
 
             //Search
-            if(!String.IsNullOrEmpty(searchString))
+            if(!String.IsNullOrEmpty(search.searchString))
             {
-                list = list.Where(x => x.Name.Contains(searchString)
-                                || x.Abrv.Contains(searchString));
+                list = list.Where(x => x.Name.Contains(search.searchString)
+                                || x.Abrv.Contains(search.searchString));
             }
 
             //Sorting
-            switch(sortOrder)
+            switch(sort.sortOrder)
             {
                 case "name_desc":
                     list = list.OrderByDescending(x=> x.Name);
@@ -65,10 +66,8 @@ namespace Vehicle.Service
                     break;
             }
 
-            int pageSize = 3;
-            int pageNumber = (page ?? 1);
 
-            return list.ToPagedList(pageNumber, pageSize);
+            return list.ToPagedList(paging.page, paging.pageSize);
         }
 
         public IVehicleMake FindByID (int? id)

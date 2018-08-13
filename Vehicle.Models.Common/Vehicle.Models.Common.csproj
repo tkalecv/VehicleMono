@@ -62,6 +62,9 @@
   <ItemGroup>
     <Compile Include="IVehicleMake.cs" />
     <Compile Include="IVehicleModel.cs" />
+    <Compile Include="PagingSortingFiltering.Common\IFiltering.cs" />
+    <Compile Include="PagingSortingFiltering.Common\IPaging.cs" />
+    <Compile Include="PagingSortingFiltering.Common\ISorting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vehicle.Models.Common;
+using Vehicle.Models.Common.Paging__Sorting__Filtering;
 
 namespace Vehicle
 {
@@ -13,7 +14,7 @@ namespace Vehicle
         void Create(IVehicleModel vModel);
         void Update(IVehicleModel vModel);
         void Delete(IVehicleModel vModel);
-        IPagedList<IVehicleModel> GetAll(string sortOrder, string searchString, int? page);
+        IPagedList<IVehicleModel> GetAll(ISorting sort, IFiltering search, IPaging paging);
         IVehicleModel FindByID(int? id);
     }
 }

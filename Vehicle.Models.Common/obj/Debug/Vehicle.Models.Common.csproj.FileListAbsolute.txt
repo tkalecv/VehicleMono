@@ -38,3 +38,4 @@ C:\Users\Valentin\Desktop\VehicleMono-master\Vehicle.Models.Common\obj\Debug\Veh
 C:\Users\Valentin\Desktop\VehicleMono-master\Vehicle.Models.Common\obj\Debug\Vehicle.Models.Common.csproj.CopyComplete
 C:\Users\Valentin\Desktop\VehicleMono-master\Vehicle.Models.Common\obj\Debug\Vehicle.Models.Common.dll
 C:\Users\Valentin\Desktop\VehicleMono-master\Vehicle.Models.Common\obj\Debug\Vehicle.Models.Common.pdb
+C:\Users\Valentin\source\repos\Vehicle\Vehicle.Models.Common\obj\Debug\Vehicle.Models.Common.csprojAssemblyReference.cache
