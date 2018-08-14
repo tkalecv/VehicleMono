@@ -45,8 +45,8 @@ namespace Vehicle.Service
             //Search
             if(!String.IsNullOrEmpty(search.searchString))
             {
-                list = list.Where(x => x.Name.Contains(search.searchString)
-                                || x.Abrv.Contains(search.searchString));
+                list = list.Where(x => x.Name.ToUpper().StartsWith(search.searchString.ToUpper())
+                                || x.Abrv.StartsWith(search.searchString));
             }
 
             //Sorting
@@ -56,13 +56,13 @@ namespace Vehicle.Service
                     list = list.OrderByDescending(x=> x.Name);
                     break;
                 case "Abrv":
+                    list = list.OrderBy(x => x.Abrv);
+                    break;
+                case "Abrv_desc":
                     list = list.OrderByDescending(x => x.Abrv);
                     break;
-                case "Vehicle_models":
-                    list = list.OrderByDescending(x => x.VehicleModels);
-                    break;
                 default:
-                    list = list.OrderBy(x=> x.ID);
+                    list = list.OrderBy(x=> x.Name);
                     break;
             }
 

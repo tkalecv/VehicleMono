@@ -61,6 +61,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\IVehicleContext.cs" />
+    <Compile Include="Migrations\201808131220169_InitialCreate.cs" />
+    <Compile Include="Migrations\201808131220169_InitialCreate.Designer.cs">
+      <DependentUpon>201808131220169_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808131233352_n4.cs" />
+    <Compile Include="Migrations\201808131233352_n4.Designer.cs">
+      <DependentUpon>201808131233352_n4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PagingSortingFiltering\Filtering.cs" />
     <Compile Include="PagingSortingFiltering\Paging.cs" />
     <Compile Include="PagingSortingFiltering\Sorting.cs" />
@@ -81,6 +90,13 @@
   <ItemGroup>
     <Content Include="Content\PagedList.css" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808131220169_InitialCreate.resx">
+      <DependentUpon>201808131220169_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808131233352_n4.resx">
+      <DependentUpon>201808131233352_n4.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

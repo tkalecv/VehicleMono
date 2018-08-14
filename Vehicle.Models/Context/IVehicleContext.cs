@@ -17,7 +17,7 @@ namespace Vehicle.Models.Context
             modelBuilder.Entity<VehicleMake>()
                 .HasMany(x => x.VehicleModels)
                 .WithOptional(x => x.VehicleMake)
-                .HasForeignKey(x => x.VehicleMakeID);
+                .HasForeignKey(x => x.MakeID);
         }
 
 

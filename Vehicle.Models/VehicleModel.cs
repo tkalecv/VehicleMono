@@ -17,5 +17,7 @@ namespace Vehicle.Models
         public int VehicleMakeID { get; set; }
         public virtual VehicleMake VehicleMake { get; set; }
 
+        public int? MakeID { get; set; }
+
     }
 }

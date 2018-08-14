@@ -1,0 +1,62 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Vehicle.MVC.ViewModels.VehicleMakeViewModel>
+
+@{
+    ViewBag.Title = "ListAll";
+}
+
+<h2>ListAll</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("ListAll", "VehicleMake"))
+{
+    <label>Search:</label>
+    <input type="text" name="search" value="@ViewBag.search">
+
+
+    <input type="submit" class="button" value="Search" />
+}
+<br />
+
+
+<table class="table">
+    <tr>
+        <th>
+           @Html.ActionLink("Name", "ListAll", new { sort = ViewBag.NameSort })
+        </th>
+        <th>
+            @Html.ActionLink("Abrv", "ListAll", new { sort = ViewBag.AbrvSort })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abrv)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="align">
+    <div class="row">
+        <div class="page-list">
+            @Html.PagedListPager(Model, page => Url.Action("ListAll", new { page, search = ViewBag.search, sort = ViewBag.CurrentSort }))
+        </div>
+    </div>
+</div>
