@@ -72,7 +72,7 @@ namespace Vehicle.MVC.Controllers
 
         public ActionResult Edit(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -89,7 +89,7 @@ namespace Vehicle.MVC.Controllers
         {
             try
             {
-                if(ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     service.Update(AutoMapper.Mapper.Map<VehicleMake>(vMake));
 
@@ -105,5 +105,38 @@ namespace Vehicle.MVC.Controllers
             return RedirectToAction("Edit", vMake.ID);
         }
 
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                return View(AutoMapper.Mapper.Map<VehicleMakeViewModel>(service.FindByID(id)));
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Delete(VehicleMakeViewModel vMake)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    service.Delete(AutoMapper.Mapper.Map<VehicleMake>(vMake));
+
+                    return RedirectToAction("ListAll");
+
+                }
+            }
+            catch (Exception)
+            {
+
+                ModelState.AddModelError("", "Unable to delete. Try again!");
+            }
+            return RedirectToAction("Delete", vMake.ID);
+        }
     }
+
 }
