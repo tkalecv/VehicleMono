@@ -7,8 +7,8 @@ using Vehicle.Models.Common.Paging__Sorting__Filtering;
 
 namespace Vehicle.Models.PagingSortingFiltering
 {
-   public class Filtering : IFiltering
+    public class Filtering : IFiltering
     {
-       public string searchString { get; set; }
+        public string searchString { get; set; }
     }
 }

@@ -47,7 +47,9 @@ namespace Vehicle.Service
             {
                 list = list.Where(x => x.Name.ToUpper().StartsWith(search.searchString.ToUpper())
                                 || x.Abrv.StartsWith(search.searchString));
+
             }
+
 
             //Sorting
             switch(sort.sortOrder)

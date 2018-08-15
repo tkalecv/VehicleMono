@@ -7,6 +7,8 @@ using Vehicle.Models.PagingSortingFiltering;
 using Vehicle.MVC.ViewModels;
 using Vehicle.Service;
 using PagedList;
+using Vehicle.Models;
+using System.Data;
 
 namespace Vehicle.MVC.Controllers
 {
@@ -31,6 +33,7 @@ namespace Vehicle.MVC.Controllers
 
             var vMakeList = service.GetAll(sortParameter, filterParameter, pagingParameter);
 
+
             ViewBag.search = search;
 
             ViewBag.NameSort = string.IsNullOrEmpty(sort) ? "name_desc" : "";
@@ -41,5 +44,39 @@ namespace Vehicle.MVC.Controllers
 
             return View(new StaticPagedList<VehicleMakeViewModel>(vMakeListViewModel, vMakeList.GetMetaData()));
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(VehicleMakeViewModel vMake)
+        {
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    service.Create(AutoMapper.Mapper.Map<VehicleMake>(vMake));
+                    return RedirectToAction("ListAll");
+                }
+            }
+            catch (DataException)
+            {
+
+                ModelState.AddModelError("", "Unable to save changes. Try again!");
+            }
+            return View(vMake);
+        }
+
+        public ActionResult Edit(int id)
+        {
+           var findbyid = service.FindByID(id);
+           var vMake= AutoMapper.Mapper.Map<VehicleMakeViewModel>(findbyid);
+
+            return View(vMake);
+        }
+
+
     }
 }

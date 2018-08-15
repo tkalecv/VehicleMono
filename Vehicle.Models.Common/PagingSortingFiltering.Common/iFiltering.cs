@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Vehicle.Models.Common.Paging__Sorting__Filtering
 {
-   public interface IFiltering
+    public interface IFiltering
     {
-         string searchString { get; set; }
+        string searchString { get; set; }
     }
 }
