@@ -9,12 +9,13 @@ using Vehicle.Service;
 using PagedList;
 using Vehicle.Models;
 using System.Data;
+using System.Net;
 
 namespace Vehicle.MVC.Controllers
 {
     public class VehicleMakeController : Controller
     {
-       VehicleMakeService service = new VehicleMakeService();
+        VehicleMakeService service = new VehicleMakeService();
 
         public ActionResult Index()
         {
@@ -27,9 +28,9 @@ namespace Vehicle.MVC.Controllers
             var sortParameter = new Sorting()
             { sortOrder = sort };
             var filterParameter = new Filtering
-            { searchString = search};
+            { searchString = search };
             var pagingParameter = new Paging
-            { page = Page ?? 1, pageSize = 3};
+            { page = Page ?? 1, pageSize = 3 };
 
             var vMakeList = service.GetAll(sortParameter, filterParameter, pagingParameter);
 
@@ -55,7 +56,7 @@ namespace Vehicle.MVC.Controllers
         {
             try
             {
-                if(ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     service.Create(AutoMapper.Mapper.Map<VehicleMake>(vMake));
                     return RedirectToAction("ListAll");
@@ -69,14 +70,40 @@ namespace Vehicle.MVC.Controllers
             return View(vMake);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-           var findbyid = service.FindByID(id);
-           var vMake= AutoMapper.Mapper.Map<VehicleMakeViewModel>(findbyid);
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                return View(AutoMapper.Mapper.Map<VehicleMakeViewModel>(service.FindByID(id)));
+            }
 
-            return View(vMake);
+
         }
 
+        [HttpPost]
+        public ActionResult Edit(VehicleMakeViewModel vMake)
+        {
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    service.Update(AutoMapper.Mapper.Map<VehicleMake>(vMake));
+
+                    return RedirectToAction("ListAll");
+
+                }
+            }
+            catch (DataException)
+            {
+
+                ModelState.AddModelError("", "Unable to save changes. Try again!");
+            }
+            return RedirectToAction("Edit", vMake.ID);
+        }
 
     }
 }
