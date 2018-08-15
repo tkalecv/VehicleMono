@@ -14,5 +14,6 @@ namespace Vehicle.MVC.ViewModels
 
 
         public int VehicleMakeID { get; set; }
+        public virtual VehicleMake VehicleMake { get; set; }
     }
 }

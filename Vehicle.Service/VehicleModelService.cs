@@ -37,7 +37,7 @@ namespace Vehicle.Service
 
         public IPagedList<IVehicleModel> GetAll(ISorting sort, IFiltering search, IPaging paging)
         {
-            var list = context.VehicleModels.AsEnumerable();
+            var list = context.VehicleModels.Include(x=> x.VehicleMake).AsEnumerable();
 
             //Search
             if (!String.IsNullOrEmpty(search.searchString))
@@ -52,7 +52,13 @@ namespace Vehicle.Service
                 case "name_desc":
                     list = list.OrderByDescending(x => x.Name);
                     break;
+                case "name":
+                    list = list.OrderBy(x => x.Name);
+                    break;
                 case "Abrv":
+                    list = list.OrderBy(x => x.Abrv);
+                    break;
+                case "Abrv_desc":
                     list = list.OrderByDescending(x => x.Abrv);
                     break;
                 default:
