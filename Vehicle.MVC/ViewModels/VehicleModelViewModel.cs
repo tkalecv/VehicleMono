@@ -15,5 +15,9 @@ namespace Vehicle.MVC.ViewModels
 
         public int VehicleMakeID { get; set; }
         public virtual VehicleMake VehicleMake { get; set; }
+
+        public int[] SelectedID { get; set; } = new int[1];
+        public IEnumerable<System.Web.Mvc.SelectListItem> Items { get; set; }
+
     }
 }

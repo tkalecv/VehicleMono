@@ -1,9 +1,11 @@
 ﻿using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vehicle.Models;
 using Vehicle.Models.PagingSortingFiltering;
 using Vehicle.MVC.ViewModels;
 using Vehicle.Service;
@@ -13,6 +15,7 @@ namespace Vehicle.MVC.Controllers
     public class VehicleModelController : Controller
     {
         VehicleModelService service = new VehicleModelService();
+        VehicleMakeService Makeservice = new VehicleMakeService();
 
         public ActionResult Index()
         {
@@ -39,7 +42,34 @@ namespace Vehicle.MVC.Controllers
             var vModelListViewModel = AutoMapper.Mapper.Map < IEnumerable<VehicleModelViewModel>>(vModelList);
 
             return View(new StaticPagedList<VehicleModelViewModel>(vModelListViewModel, vModelList.GetMetaData()));
+        }
 
+        public ActionResult Create()
+        {
+            VehicleModelViewModel vModel = new VehicleModelViewModel();
+            vModel.Items = Makeservice.ListItems().Select(x => new SelectListItem { Value = x.ID.ToString(), Text = x.Name });
+
+            return View(vModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(VehicleModelViewModel vModel)
+        {
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    vModel.VehicleMakeID = vModel.SelectedID.ElementAt(0);
+                    service.Create(AutoMapper.Mapper.Map<VehicleModel>(vModel));
+                    return RedirectToAction("ListAll");
+                }
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again!");
+            }
+
+            return View(vModel);
         }
     }
 }
