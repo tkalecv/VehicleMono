@@ -216,6 +216,8 @@
     <Content Include="Views\VehicleMake\Delete.cshtml" />
     <Content Include="Views\VehicleModel\ListAll.cshtml" />
     <Content Include="Views\VehicleModel\Create.cshtml" />
+    <Content Include="Views\VehicleModel\Edit.cshtml" />
+    <Content Include="Views\VehicleModel\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Vehicle.Models;
@@ -70,6 +71,69 @@ namespace Vehicle.MVC.Controllers
             }
 
             return View(vModel);
+        }
+
+        public ActionResult Edit(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                return View(AutoMapper.Mapper.Map<VehicleModelViewModel>(service.FindByID(id)));
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(VehicleModelViewModel vModel)
+        {
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    service.Update(AutoMapper.Mapper.Map<VehicleModel>(vModel));
+                    return RedirectToAction("ListAll");
+                }
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again!");
+            }
+            return RedirectToAction("Edit", vModel.ID);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+                if(id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    return View(AutoMapper.Mapper.Map<VehicleModelViewModel>(service.FindByID(id)));
+                }
+        }
+
+        [HttpPost]
+        public ActionResult Delete(VehicleModelViewModel vModel)
+        {
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    service.Delete(AutoMapper.Mapper.Map<VehicleModel>(vModel));
+                    return RedirectToAction("ListAll");
+                }
+            }
+            catch (DataException)
+            {
+
+                ModelState.AddModelError("", "Unable to delete. Try again!");
+            }
+
+            return RedirectToAction("Delete", vModel.ID);
         }
     }
 }

@@ -12,6 +12,17 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("ListAll", "VehicleModel"))
+{
+    <p>
+        Search: @Html.TextBox("Search")
+        <input type="submit" value="Search" />
+    </p>
+}
+<br />
+
+
 <table class="table">
     <tr>
         <th>
@@ -26,24 +37,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Abrv)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VehicleMake.ID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abrv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleMakeID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
 
