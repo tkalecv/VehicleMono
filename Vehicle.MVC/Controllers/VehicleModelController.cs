@@ -16,52 +16,55 @@ namespace Vehicle.MVC.Controllers
     public class VehicleModelController : Controller
     {
         VehicleModelService service = new VehicleModelService();
-        VehicleMakeService Makeservice = new VehicleMakeService();
 
         public ActionResult Index()
         {
             return View();
         }
 
+        //GET: Paged list of all VehicleMakes
         public ActionResult ListAll(string sort, int? Page, string search)
         {
-            var sortParameter = new Sorting()
+            var SortParameter = new Sorting()
             { sortOrder = sort };
-            var pagingParameter = new Paging
+            var PagingParameter = new Paging
             { page=Page ?? 1, pageSize = 3 };
-            var filterParameter = new Filtering
+            var FilterParameter = new Filtering
             { searchString = search };
 
-            var vModelList = service.GetAll(sortParameter, filterParameter, pagingParameter);
+            var VModelList = service.GetAll(SortParameter, FilterParameter, PagingParameter);
 
-            ViewBag.search = search;
+            ViewBag.Search = search;
 
             ViewBag.NameSort = string.IsNullOrEmpty(sort) ? "name_desc" : "";
             ViewBag.AbrvSort = sort == "Abrv" ? "Abrv_desc" : "Abrv";
             ViewBag.CurrentSort = sort;
 
-            var vModelListViewModel = AutoMapper.Mapper.Map < IEnumerable<VehicleModelViewModel>>(vModelList);
+            var VModelListViewModel = AutoMapper.Mapper.Map<IEnumerable<VehicleModelViewModel>>(VModelList);
 
-            return View(new StaticPagedList<VehicleModelViewModel>(vModelListViewModel, vModelList.GetMetaData()));
+            return View(new StaticPagedList<VehicleModelViewModel>(VModelListViewModel, VModelList.GetMetaData()));
         }
 
+        //GET: Create VehicleMake
         public ActionResult Create()
         {
-            VehicleModelViewModel vModel = new VehicleModelViewModel();
-            vModel.Items = Makeservice.ListItems().Select(x => new SelectListItem { Value = x.ID.ToString(), Text = x.Name });
+            VehicleMakeListViewModel ModelList = new VehicleMakeListViewModel();
+            //ModelList.Items = AutoMapper.Mapper.Map<IList<SelectListItem>>(service.VehicleMakeList().Select(x => new SelectListItem { Value = x.ID.ToString(), Text = x.Name } ));
 
-            return View(vModel);
+            ModelList.Items = service.VehicleMakeList().Select(x => new SelectListItem { Value = x.ID.ToString(), Text = x.Name });
+
+            return View(ModelList);
         }
 
+        //POST: Create VehicleMake
         [HttpPost]
-        public ActionResult Create(VehicleModelViewModel vModel)
+        public ActionResult Create(VehicleModelViewModel VModel)
         {
             try
             {
                 if(ModelState.IsValid)
                 {
-                    vModel.VehicleMakeID = vModel.SelectedID.ElementAt(0);
-                    service.Create(AutoMapper.Mapper.Map<VehicleModel>(vModel));
+                    service.Create(AutoMapper.Mapper.Map<VehicleModel>(VModel));
                     return RedirectToAction("ListAll");
                 }
             }
@@ -70,9 +73,10 @@ namespace Vehicle.MVC.Controllers
                 ModelState.AddModelError("", "Unable to save changes. Try again!");
             }
 
-            return View(vModel);
+            return View(VModel);
         }
 
+        //GET: Find VehicleMake by id and edit
         public ActionResult Edit(int? id)
         {
 
@@ -85,15 +89,15 @@ namespace Vehicle.MVC.Controllers
                 return View(AutoMapper.Mapper.Map<VehicleModelViewModel>(service.FindByID(id)));
             }
         }
-
+        //POST: Edit VehicleMake and save changes
         [HttpPost]
-        public ActionResult Edit(VehicleModelViewModel vModel)
+        public ActionResult Edit(VehicleModelViewModel VModel)
         {
             try
             {
                 if(ModelState.IsValid)
                 {
-                    service.Update(AutoMapper.Mapper.Map<VehicleModel>(vModel));
+                    service.Update(AutoMapper.Mapper.Map<VehicleModel>(VModel));
                     return RedirectToAction("ListAll");
                 }
             }
@@ -101,9 +105,10 @@ namespace Vehicle.MVC.Controllers
             {
                 ModelState.AddModelError("", "Unable to save changes. Try again!");
             }
-            return RedirectToAction("Edit", vModel.ID);
+            return RedirectToAction("Edit", VModel.ID);
         }
 
+        //GET: Find VehicleMake by id and delete
         public ActionResult Delete(int? id)
         {
                 if(id == null)
@@ -115,15 +120,15 @@ namespace Vehicle.MVC.Controllers
                     return View(AutoMapper.Mapper.Map<VehicleModelViewModel>(service.FindByID(id)));
                 }
         }
-
+        //POST: Delete VehicleMake and save changes
         [HttpPost]
-        public ActionResult Delete(VehicleModelViewModel vModel)
+        public ActionResult Delete(VehicleModelViewModel VModel)
         {
             try
             {
                 if(ModelState.IsValid)
                 {
-                    service.Delete(AutoMapper.Mapper.Map<VehicleModel>(vModel));
+                    service.Delete(AutoMapper.Mapper.Map<VehicleModel>(VModel));
                     return RedirectToAction("ListAll");
                 }
             }
@@ -133,7 +138,7 @@ namespace Vehicle.MVC.Controllers
                 ModelState.AddModelError("", "Unable to delete. Try again!");
             }
 
-            return RedirectToAction("Delete", vModel.ID);
+            return RedirectToAction("Delete", VModel.ID);
         }
     }
 }

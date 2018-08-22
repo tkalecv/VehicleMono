@@ -1,4 +1,4 @@
-﻿@model Vehicle.MVC.ViewModels.VehicleModelViewModel
+﻿@model Vehicle.MVC.ViewModels.VehicleMakeListViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -7,12 +7,12 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "VehicleModel", FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>VehicleModelViewModel</h4>
+        <h4>VehicleMakeListViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.VehicleMakeID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.ListBoxFor(model => model.SelectedID, Model.Items, new { htmlAttributes = new { @class = "listbox" } })
+                @Html.DropDownListFor(x => x.VehicleMakeID, Model.Items, new { @class = "listbox selectedid" })
                 @Html.ValidationMessageFor(model => model.VehicleMakeID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,7 +48,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "ListAll")
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

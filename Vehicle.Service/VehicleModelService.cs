@@ -72,5 +72,10 @@ namespace Vehicle.Service
             return context.VehicleModels.Where(x => x.ID == id).FirstOrDefault();
 
         }
+
+        public IEnumerable<IVehicleMake> VehicleMakeList()
+        {
+            return context.VehicleMakes.ToList();
+        }
     }
 }

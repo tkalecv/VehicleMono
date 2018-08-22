@@ -77,10 +77,6 @@ namespace Vehicle.Service
            return context.VehicleMakes.Where(x => x.ID == id).FirstOrDefault();
         }
 
-        public IList<IVehicleMake> ListItems()
-        {
-            return AutoMapper.Mapper.Map<IList<IVehicleMake>>(context.VehicleMakes.ToList());
-        }
 
     }
 }

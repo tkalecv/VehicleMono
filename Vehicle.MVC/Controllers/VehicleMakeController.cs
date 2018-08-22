@@ -22,17 +22,17 @@ namespace Vehicle.MVC.Controllers
             return View();
         }
 
-
+        //GET: Paged list of all VehicleMakes
         public ActionResult ListAll(string sort, int? Page, string search)
         {
-            var sortParameter = new Sorting()
+            var SortParameter = new Sorting()
             { sortOrder = sort };
-            var filterParameter = new Filtering
+            var FilterParameter = new Filtering
             { searchString = search };
-            var pagingParameter = new Paging
+            var PagingParameter = new Paging
             { page = Page ?? 1, pageSize = 3 };
 
-            var vMakeList = service.GetAll(sortParameter, filterParameter, pagingParameter);
+            var VMakeList = service.GetAll(SortParameter, FilterParameter, PagingParameter);
 
 
             ViewBag.search = search;
@@ -41,24 +41,26 @@ namespace Vehicle.MVC.Controllers
             ViewBag.AbrvSort = sort == "Abrv" ? "Abrv_desc" : "Abrv";
             ViewBag.CurrentSort = sort;
 
-            var vMakeListViewModel = AutoMapper.Mapper.Map<IEnumerable<VehicleMakeViewModel>>(vMakeList);
+            var VMakeListViewModel = AutoMapper.Mapper.Map<IEnumerable<VehicleMakeViewModel>>(VMakeList);
 
-            return View(new StaticPagedList<VehicleMakeViewModel>(vMakeListViewModel, vMakeList.GetMetaData()));
+            return View(new StaticPagedList<VehicleMakeViewModel>(VMakeListViewModel, VMakeList.GetMetaData()));
         }
 
+        //GET: Create VehicleMake
         public ActionResult Create()
         {
             return View();
         }
 
+        //POST: Create VehicleMake
         [HttpPost]
-        public ActionResult Create(VehicleMakeViewModel vMake)
+        public ActionResult Create(VehicleMakeViewModel VMake)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    service.Create(AutoMapper.Mapper.Map<VehicleMake>(vMake));
+                    service.Create(AutoMapper.Mapper.Map<VehicleMake>(VMake));
                     return RedirectToAction("ListAll");
                 }
             }
@@ -67,9 +69,10 @@ namespace Vehicle.MVC.Controllers
 
                 ModelState.AddModelError("", "Unable to save changes. Try again!");
             }
-            return View(vMake);
+            return View(VMake);
         }
 
+        //GET: Find VehicleMake by id and edit
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,14 +87,15 @@ namespace Vehicle.MVC.Controllers
 
         }
 
+        //POST: Edit VehicleMake and save changes
         [HttpPost]
-        public ActionResult Edit(VehicleMakeViewModel vMake)
+        public ActionResult Edit(VehicleMakeViewModel VMake)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    service.Update(AutoMapper.Mapper.Map<VehicleMake>(vMake));
+                    service.Update(AutoMapper.Mapper.Map<VehicleMake>(VMake));
 
                     return RedirectToAction("ListAll");
 
@@ -102,9 +106,10 @@ namespace Vehicle.MVC.Controllers
 
                 ModelState.AddModelError("", "Unable to save changes. Try again!");
             }
-            return RedirectToAction("Edit", vMake.ID);
+            return RedirectToAction("Edit", VMake.ID);
         }
 
+        //GET: Find VehicleMake by id and delete
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,14 +122,15 @@ namespace Vehicle.MVC.Controllers
             }
         }
 
+        //POST: Delete VehicleMake and save changes
         [HttpPost]
-        public ActionResult Delete(VehicleMakeViewModel vMake)
+        public ActionResult Delete(VehicleMakeViewModel VMake)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    service.Delete(AutoMapper.Mapper.Map<VehicleMake>(vMake));
+                    service.Delete(AutoMapper.Mapper.Map<VehicleMake>(VMake));
 
                     return RedirectToAction("ListAll");
 
@@ -135,7 +141,7 @@ namespace Vehicle.MVC.Controllers
 
                 ModelState.AddModelError("", "Unable to delete. Try again!");
             }
-            return RedirectToAction("Delete", vMake.ID);
+            return RedirectToAction("Delete", VMake.ID);
         }
     }
 

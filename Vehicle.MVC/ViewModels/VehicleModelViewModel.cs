@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Vehicle.Models;
+using Vehicle.Service;
 
 namespace Vehicle.MVC.ViewModels
 {
@@ -12,12 +13,7 @@ namespace Vehicle.MVC.ViewModels
         public string Name { get; set; }
         public string Abrv { get; set; }
 
-
         public int VehicleMakeID { get; set; }
-        //public virtual VehicleMake VehicleMake { get; set; } -- show names
-
-        public int[] SelectedID { get; set; } = new int[1];
-        public IEnumerable<System.Web.Mvc.SelectListItem> Items { get; set; }
-
+        public virtual VehicleMake VehicleMake { get; set; }
     }
 }
