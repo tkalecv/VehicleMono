@@ -293,7 +293,6 @@ C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\System.Web.Razor.
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\System.Web.WebPages.Deployment.dll
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\System.Web.WebPages.dll
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\System.Web.WebPages.Razor.dll
-C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Vehicle.dll
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Vehicle.Models.Common.dll
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Vehicle.Models.dll
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Vehicle.Service.dll
@@ -304,8 +303,6 @@ C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Vehicle.Models.pd
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Vehicle.Models.dll.config
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Vehicle.Service.pdb
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Vehicle.Service.dll.config
-C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Vehicle.pdb
-C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Vehicle.dll.config
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\AutoMapper.pdb
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\AutoMapper.xml
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\EntityFramework.xml
@@ -329,3 +326,6 @@ C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Microsoft.AI.Serv
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Microsoft.AI.Web.xml
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\obj\Debug\Vehicle.MVC.csproj.CopyComplete
+C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Vehicle.Service.Common.dll
+C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Vehicle.Service.Common.pdb
+C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.MVC\bin\Vehicle.Service.Common.dll.config

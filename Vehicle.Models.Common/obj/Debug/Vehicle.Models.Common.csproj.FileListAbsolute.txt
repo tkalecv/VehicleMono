@@ -76,7 +76,6 @@ C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.Models.Common\bin\Debug\E
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.Models.Common\bin\Debug\PagedList.xml
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.Models.Common\bin\Debug\PagedList.Mvc.xml
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.Models.Common\bin\Debug\System.ValueTuple.xml
-C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.Models.Common\obj\Debug\Vehicle.Models.Common.csprojAssemblyReference.cache
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.Models.Common\obj\Debug\Vehicle.Models.Common.csproj.CoreCompileInputs.cache
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.Models.Common\obj\Debug\Vehicle.Models.Common.csproj.CopyComplete
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.Models.Common\obj\Debug\Vehicle.Models.Common.dll

@@ -37,7 +37,7 @@ namespace Vehicle.Service
 
         public IPagedList<IVehicleModel> GetAll(ISorting sort, IFiltering search, IPaging paging)
         {
-            var list = context.VehicleModels/*Include(x=> x.VehicleMake)*/.AsEnumerable();
+            var list = context.VehicleModels.AsEnumerable();
 
             //Search
             if (!String.IsNullOrEmpty(search.searchString))

@@ -246,13 +246,13 @@
       <Project>{d5652faf-3723-415c-82c8-588f1b1de994}</Project>
       <Name>Vehicle.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Vehicle.Service.Common\Vehicle.Service.Common.csproj">
+      <Project>{0cba522f-5957-49c7-ad5a-bbb95679726a}</Project>
+      <Name>Vehicle.Service.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vehicle.Service\Vehicle.Service.csproj">
       <Project>{1713128d-dc3f-4ba1-8ad7-30836e38e283}</Project>
       <Name>Vehicle.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Vehicle\Vehicle.Service.Common.csproj">
-      <Project>{26475da0-be70-4fea-82c7-fdd6de65f01b}</Project>
-      <Name>Vehicle.Service.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

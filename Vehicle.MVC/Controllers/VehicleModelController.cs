@@ -22,7 +22,7 @@ namespace Vehicle.MVC.Controllers
             return View();
         }
 
-        //GET: Paged list of all VehicleMakes
+        //GET: Paged list of all VehicleModels
         public ActionResult ListAll(string sort, int? Page, string search)
         {
             var SortParameter = new Sorting()
@@ -45,7 +45,7 @@ namespace Vehicle.MVC.Controllers
             return View(new StaticPagedList<VehicleModelViewModel>(VModelListViewModel, VModelList.GetMetaData()));
         }
 
-        //GET: Create VehicleMake
+        //GET: Create VehicleModel
         public ActionResult Create()
         {
             VehicleMakeListViewModel ModelList = new VehicleMakeListViewModel();
@@ -56,7 +56,7 @@ namespace Vehicle.MVC.Controllers
             return View(ModelList);
         }
 
-        //POST: Create VehicleMake
+        //POST: Create VehicleModel
         [HttpPost]
         public ActionResult Create(VehicleModelViewModel VModel)
         {
@@ -76,7 +76,7 @@ namespace Vehicle.MVC.Controllers
             return View(VModel);
         }
 
-        //GET: Find VehicleMake by id and edit
+        //GET: Find VehicleModel by id and edit
         public ActionResult Edit(int? id)
         {
 
@@ -89,7 +89,7 @@ namespace Vehicle.MVC.Controllers
                 return View(AutoMapper.Mapper.Map<VehicleModelViewModel>(service.FindByID(id)));
             }
         }
-        //POST: Edit VehicleMake and save changes
+        //POST: Edit VehicleModel and save changes
         [HttpPost]
         public ActionResult Edit(VehicleModelViewModel VModel)
         {
@@ -108,7 +108,7 @@ namespace Vehicle.MVC.Controllers
             return RedirectToAction("Edit", VModel.ID);
         }
 
-        //GET: Find VehicleMake by id and delete
+        //GET: Find VehicleModel by id and delete
         public ActionResult Delete(int? id)
         {
                 if(id == null)
@@ -120,7 +120,7 @@ namespace Vehicle.MVC.Controllers
                     return View(AutoMapper.Mapper.Map<VehicleModelViewModel>(service.FindByID(id)));
                 }
         }
-        //POST: Delete VehicleMake and save changes
+        //POST: Delete VehicleModel and save changes
         [HttpPost]
         public ActionResult Delete(VehicleModelViewModel VModel)
         {
