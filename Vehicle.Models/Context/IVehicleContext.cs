@@ -12,6 +12,7 @@ namespace Vehicle.Models.Context
         public DbSet<VehicleModel> VehicleModels { get; set; }
         public DbSet<VehicleMake> VehicleMakes { get; set; }
 
+        //Relationship between tables VehicleModels and VehicleMakes (Foreign Key)
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<VehicleMake>()
@@ -20,7 +21,7 @@ namespace Vehicle.Models.Context
                 .HasForeignKey(x => x.MakeID);
         }
 
-
+        //If models change drop existing database and create a new one
         protected void Application_Start(object sender, EventArgs e)
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<VehicleContext>());

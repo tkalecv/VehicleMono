@@ -23,35 +23,32 @@ namespace Vehicle.MVC.Controllers
         }
 
         //GET: Paged list of all VehicleModels
-        public ActionResult ListAll(string sort, int? Page, string search)
+        public ActionResult ListAll(string Sort, int? Page, string Search)
         {
             var SortParameter = new Sorting()
-            { sortOrder = sort };
+            { sortOrder = Sort };
             var PagingParameter = new Paging
-            { page=Page ?? 1, pageSize = 3 };
+            { page=Page ?? 1, pageSize = 5 };
             var FilterParameter = new Filtering
-            { searchString = search };
+            { searchString = Search };
 
             var VModelList = service.GetAll(SortParameter, FilterParameter, PagingParameter);
 
-            ViewBag.Search = search;
+            ViewBag.Search = Search;
 
-            ViewBag.NameSort = string.IsNullOrEmpty(sort) ? "name_desc" : "";
-            ViewBag.AbrvSort = sort == "Abrv" ? "Abrv_desc" : "Abrv";
-            ViewBag.CurrentSort = sort;
+            ViewBag.NameSort = string.IsNullOrEmpty(Sort) ? "name_desc" : "";
+            ViewBag.AbrvSort = Sort == "Abrv" ? "Abrv_desc" : "Abrv";
+            ViewBag.CurrentSort = Sort;
 
-            var VModelListViewModel = AutoMapper.Mapper.Map<IEnumerable<VehicleModelViewModel>>(VModelList);
+            var VModelViewModelList = AutoMapper.Mapper.Map<IEnumerable<VehicleModelViewModel>>(VModelList);
 
-            return View(new StaticPagedList<VehicleModelViewModel>(VModelListViewModel, VModelList.GetMetaData()));
+            return View(new StaticPagedList<VehicleModelViewModel>(VModelViewModelList, VModelList.GetMetaData()));
         }
 
         //GET: Create VehicleModel
         public ActionResult Create()
         {
-            VehicleMakeListViewModel ModelList = new VehicleMakeListViewModel();
-            //ModelList.Items = AutoMapper.Mapper.Map<IList<SelectListItem>>(service.VehicleMakeList().Select(x => new SelectListItem { Value = x.ID.ToString(), Text = x.Name } ));
-
-            ModelList.Items = service.VehicleMakeList().Select(x => new SelectListItem { Value = x.ID.ToString(), Text = x.Name });
+            var ModelList = new VehicleMakeListViewModel();
 
             return View(ModelList);
         }

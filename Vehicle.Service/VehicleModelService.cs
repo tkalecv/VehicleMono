@@ -17,11 +17,14 @@ namespace Vehicle.Service
         
         VehicleContext context = new VehicleContext();
 
+        //Add new VehicleModel
         public void Create(IVehicleModel vModel)
         {
             context.VehicleModels.Add(AutoMapper.Mapper.Map<VehicleModel>(vModel));
             context.SaveChanges();
         }
+
+        //Update already existing VehicleModel
 
         public void Update(IVehicleModel vModel)
         {
@@ -29,12 +32,14 @@ namespace Vehicle.Service
             context.SaveChanges();
         }
 
+        //Find VehicleModel by ID and delete it
         public void Delete(IVehicleModel vModel)
         {
             context.VehicleModels.Remove(context.VehicleModels.Where(x=> x.ID == vModel.ID).FirstOrDefault());
             context.SaveChanges();
         }
 
+        //Paged list of all VehicleModels with sorting and filtering
         public IPagedList<IVehicleModel> GetAll(ISorting sort, IFiltering search, IPaging paging)
         {
             var list = context.VehicleModels.AsEnumerable();
@@ -50,7 +55,7 @@ namespace Vehicle.Service
             switch (sort.sortOrder)
             {
                 case "name_desc":
-                    list = list.OrderByDescending(x => x.Name);
+                    ////list = list.OrderByDescending(x => x.Name);
                     break;
                 case "Abrv":
                     list = list.OrderBy(x => x.Abrv);
@@ -67,12 +72,14 @@ namespace Vehicle.Service
 
         }
 
+        //Find one VehicleModel by ID
         public IVehicleModel FindByID(int? id)
         {
             return context.VehicleModels.Where(x => x.ID == id).FirstOrDefault();
 
         }
 
+        //List of all VehicleMakes(used for SelectList)
         public IEnumerable<IVehicleMake> VehicleMakeList()
         {
             return context.VehicleMakes.ToList();

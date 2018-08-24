@@ -6,6 +6,7 @@ using Vehicle.Models;
 
 namespace Vehicle.MVC.ViewModels
 {
+    //ViewModek for VehicleMake entity
     public class VehicleMakeViewModel
     {
         public int ID { get; set; }

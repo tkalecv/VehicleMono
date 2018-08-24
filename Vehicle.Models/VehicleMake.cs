@@ -13,6 +13,7 @@ namespace Vehicle.Models
         public string Name { get; set; }
         public string Abrv { get; set; }
 
+        //Collection of VehicleModels - One To Many Relationship
         public virtual ICollection<VehicleModel> VehicleModels { get; set; }
 
     }

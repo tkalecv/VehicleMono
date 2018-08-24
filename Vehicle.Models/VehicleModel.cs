@@ -13,10 +13,9 @@ namespace Vehicle.Models
         public string Name { get; set; }
         public string Abrv { get; set; }
 
-
+        //Foreign Key
         public int VehicleMakeID { get; set; }
         public virtual VehicleMake VehicleMake { get; set; }
-
         public int? MakeID { get; set; }
 
     }

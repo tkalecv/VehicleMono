@@ -61,7 +61,7 @@
 <div class="align">
     <div class="row">
         <div class="page-list">
-            @Html.PagedListPager(Model, page => Url.Action("ListAll", new { page, search = ViewBag.Search, sort = ViewBag.CurrentSort }))
+            @Html.PagedListPager(Model, page => Url.Action("ListAll", new { page, search = ViewBag.Search, Sort = ViewBag.CurrentSort }))
         </div>
     </div>
 </div>
