@@ -11,9 +11,9 @@ namespace Vehicle
 {
    public interface IVehicleModelService
     {
-        void Create(IVehicleModel vModel);
-        void Update(IVehicleModel vModel);
-        void Delete(IVehicleModel vModel);
+        void Create(IVehicleModel VModel);
+        void Update(IVehicleModel VModel);
+        void Delete(IVehicleModel VModel);
         IPagedList<IVehicleModel> GetAll(ISorting sort, IFiltering search, IPaging paging);
         IVehicleModel FindByID(int? id);
     }

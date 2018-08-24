@@ -18,24 +18,24 @@ namespace Vehicle.Service
 
 
         //Add new VehicleMake
-        public void Create(IVehicleMake vMake)
+        public void Create(IVehicleMake VMake)
         {
-            context.VehicleMakes.Add(AutoMapper.Mapper.Map<VehicleMake>(vMake));
+            context.VehicleMakes.Add(AutoMapper.Mapper.Map<VehicleMake>(VMake));
             context.SaveChanges();
         }
 
         //Update already existing VehicleMake
-        public void Update (IVehicleMake vMake)
+        public void Update (IVehicleMake VMake)
         {
 
-            context.Entry(vMake).State = EntityState.Modified;
+            context.Entry(VMake).State = EntityState.Modified;
             context.SaveChanges();
         }
 
         //Find VehicleMake by ID and delete it
-        public void Delete(IVehicleMake vMake)
+        public void Delete(IVehicleMake VMake)
         {
-           context.VehicleMakes.Remove(context.VehicleMakes.Where(x => x.ID == vMake.ID).FirstOrDefault());
+           context.VehicleMakes.Remove(context.VehicleMakes.Where(x => x.ID == VMake.ID).FirstOrDefault());
             context.SaveChanges();
         }
 

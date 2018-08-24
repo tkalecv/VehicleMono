@@ -18,24 +18,24 @@ namespace Vehicle.Service
         VehicleContext context = new VehicleContext();
 
         //Add new VehicleModel
-        public void Create(IVehicleModel vModel)
+        public void Create(IVehicleModel VModel)
         {
-            context.VehicleModels.Add(AutoMapper.Mapper.Map<VehicleModel>(vModel));
+            context.VehicleModels.Add(AutoMapper.Mapper.Map<VehicleModel>(VModel));
             context.SaveChanges();
         }
 
         //Update already existing VehicleModel
 
-        public void Update(IVehicleModel vModel)
+        public void Update(IVehicleModel VModel)
         {
-            context.Entry(vModel).State = EntityState.Modified;
+            context.Entry(VModel).State = EntityState.Modified;
             context.SaveChanges();
         }
 
         //Find VehicleModel by ID and delete it
-        public void Delete(IVehicleModel vModel)
+        public void Delete(IVehicleModel VModel)
         {
-            context.VehicleModels.Remove(context.VehicleModels.Where(x=> x.ID == vModel.ID).FirstOrDefault());
+            context.VehicleModels.Remove(context.VehicleModels.Where(x=> x.ID == VModel.ID).FirstOrDefault());
             context.SaveChanges();
         }
 
@@ -55,7 +55,7 @@ namespace Vehicle.Service
             switch (sort.sortOrder)
             {
                 case "name_desc":
-                    ////list = list.OrderByDescending(x => x.Name);
+                    list = list.OrderByDescending(x => x.Name);
                     break;
                 case "Abrv":
                     list = list.OrderBy(x => x.Abrv);

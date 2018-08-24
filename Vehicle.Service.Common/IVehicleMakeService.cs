@@ -11,9 +11,9 @@ namespace Vehicle
 {
    public interface IVehicleMakeService
     {
-        void Create(IVehicleMake vMake);
-        void Update(IVehicleMake vMake);
-        void Delete(IVehicleMake vMake);
+        void Create(IVehicleMake VMake);
+        void Update(IVehicleMake VMake);
+        void Delete(IVehicleMake VMake);
         IPagedList<IVehicleMake> GetAll(ISorting sort, IFiltering search, IPaging paging);
         IVehicleMake FindByID(int? id);
     }

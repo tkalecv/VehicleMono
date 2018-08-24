@@ -23,23 +23,23 @@ namespace Vehicle.MVC.Controllers
         }
 
         //GET: Paged list of all VehicleMakes
-        public ActionResult ListAll(string sort, int? Page, string search)
+        public ActionResult ListAll(string Sort, int? Page, string Search)
         {
             var SortParameter = new Sorting()
-            { sortOrder = sort };
+            { sortOrder = Sort };
             var FilterParameter = new Filtering
-            { searchString = search };
+            { searchString = Search };
             var PagingParameter = new Paging
             { page = Page ?? 1, pageSize = 3 };
 
             var VMakeList = service.GetAll(SortParameter, FilterParameter, PagingParameter);
 
 
-            ViewBag.search = search;
+            ViewBag.Search = Search;
 
-            ViewBag.NameSort = string.IsNullOrEmpty(sort) ? "name_desc" : "";
-            ViewBag.AbrvSort = sort == "Abrv" ? "Abrv_desc" : "Abrv";
-            ViewBag.CurrentSort = sort;
+            ViewBag.NameSort = string.IsNullOrEmpty(Sort) ? "name_desc" : "";
+            ViewBag.AbrvSort = Sort == "Abrv" ? "Abrv_desc" : "Abrv";
+            ViewBag.CurrentSort = Sort;
 
             var VMakeListViewModel = AutoMapper.Mapper.Map<IEnumerable<VehicleMakeViewModel>>(VMakeList);
 
