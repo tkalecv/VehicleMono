@@ -42,33 +42,39 @@ namespace Vehicle.Service
         //Paged list of all VehicleModels with sorting and filtering
         public IPagedList<IVehicleModel> GetAll(ISorting sort, IFiltering search, IPaging paging)
         {
-            var list = context.VehicleModels.AsEnumerable();
+            IQueryable<VehicleModel> modelList;
 
             //Search
             if (!String.IsNullOrEmpty(search.searchString))
             {
-                list = list.Where(x => x.Name.ToUpper().StartsWith(search.searchString.ToUpper())
+                modelList = context.VehicleModels.Where(x => x.Name.ToUpper().StartsWith(search.searchString.ToUpper())
                                 || x.Abrv.ToUpper().StartsWith(search.searchString.ToUpper()));
             }
+            else
+            {
+                modelList = context.VehicleModels;
+            }
+
+            IPagedList<VehicleModel> vehicleModelList;
 
             //Sorting
             switch (sort.sortOrder)
             {
                 case "name_desc":
-                    list = list.OrderByDescending(x => x.Name);
+                    vehicleModelList = modelList.OrderByDescending(x => x.Name).ToPagedList(paging.page, paging.pageSize);
                     break;
                 case "Abrv":
-                    list = list.OrderBy(x => x.Abrv);
+                    vehicleModelList = modelList.OrderBy(x => x.Abrv).ToPagedList(paging.page, paging.pageSize);
                     break;
                 case "Abrv_desc":
-                    list = list.OrderByDescending(x => x.Abrv);
+                    vehicleModelList = modelList.OrderByDescending(x => x.Abrv).ToPagedList(paging.page, paging.pageSize);
                     break;
                 default:
-                    list = list.OrderBy(x => x.Name);
+                    vehicleModelList = modelList.OrderBy(x => x.Name).ToPagedList(paging.page, paging.pageSize);
                     break;
             }
 
-            return list.ToPagedList(paging.page, paging.pageSize);
+            return (vehicleModelList);
 
         }
 
@@ -79,10 +85,10 @@ namespace Vehicle.Service
 
         }
 
-        //List of all VehicleMakes(used for SelectList)
+        //List of all VehicleMakes(used for SelectList for create VehicleModel)
         public IEnumerable<IVehicleMake> VehicleMakeList()
         {
-            return context.VehicleMakes.ToList();
+            return context.VehicleMakes.AsEnumerable();
         }
     }
 }

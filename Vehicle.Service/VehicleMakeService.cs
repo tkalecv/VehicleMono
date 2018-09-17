@@ -12,7 +12,7 @@ using Vehicle.Models.Context;
 
 namespace Vehicle.Service
 {
-   public class VehicleMakeService : IVehicleMakeService
+    public class VehicleMakeService : IVehicleMakeService
     {
         VehicleContext context = new VehicleContext();
 
@@ -25,7 +25,7 @@ namespace Vehicle.Service
         }
 
         //Update already existing VehicleMake
-        public void Update (IVehicleMake VMake)
+        public void Update(IVehicleMake VMake)
         {
 
             context.Entry(VMake).State = EntityState.Modified;
@@ -35,50 +35,56 @@ namespace Vehicle.Service
         //Find VehicleMake by ID and delete it
         public void Delete(IVehicleMake VMake)
         {
-           context.VehicleMakes.Remove(context.VehicleMakes.Where(x => x.ID == VMake.ID).FirstOrDefault());
+            context.VehicleMakes.Remove(context.VehicleMakes.Where(x => x.ID == VMake.ID).FirstOrDefault());
             context.SaveChanges();
         }
 
         //Paged list of all VehicleMakes with sorting and filtering
         public IPagedList<IVehicleMake> GetAll(ISorting sort, IFiltering search, IPaging paging)
         {
-            var list = context.VehicleMakes.AsEnumerable();
+
+            IQueryable<VehicleMake> makeList;
 
 
             //Search
-            if(!String.IsNullOrEmpty(search.searchString))
+            if (!String.IsNullOrEmpty(search.searchString))
             {
-                list = list.Where(x => x.Name.ToUpper().StartsWith(search.searchString.ToUpper())
-                                || x.Abrv.StartsWith(search.searchString));
+                makeList = context.VehicleMakes.Where(x => x.Name.ToUpper().StartsWith(search.searchString.ToUpper())
+                                  || x.Abrv.StartsWith(search.searchString));
 
             }
+            else
+            {
+                makeList = context.VehicleMakes;
+            }
 
+            IPagedList<VehicleMake> vehicleMakeList;
 
             //Sorting
-            switch(sort.sortOrder)
+            switch (sort.sortOrder)
             {
                 case "name_desc":
-                    list = list.OrderByDescending(x=> x.Name);
+                    vehicleMakeList = makeList.OrderByDescending(x => x.Name).ToPagedList(paging.page, paging.pageSize);
                     break;
                 case "Abrv":
-                    list = list.OrderBy(x => x.Abrv);
+                    vehicleMakeList = makeList.OrderBy(x => x.Abrv).ToPagedList(paging.page, paging.pageSize);
                     break;
                 case "Abrv_desc":
-                    list = list.OrderByDescending(x => x.Abrv);
+                    vehicleMakeList = makeList.OrderByDescending(x => x.Abrv).ToPagedList(paging.page, paging.pageSize);
                     break;
                 default:
-                    list = list.OrderBy(x=> x.Name);
+                    vehicleMakeList = makeList.OrderBy(x => x.Name).ToPagedList(paging.page, paging.pageSize);
                     break;
             }
 
 
-            return list.ToPagedList(paging.page, paging.pageSize);
+            return (vehicleMakeList);
         }
 
         //Find one VehicleMake by ID
-        public IVehicleMake FindByID (int? id)
+        public IVehicleMake FindByID(int? id)
         {
-           return context.VehicleMakes.Where(x => x.ID == id).FirstOrDefault();
+            return context.VehicleMakes.Where(x => x.ID == id).FirstOrDefault();
         }
 
 

@@ -80,3 +80,4 @@ C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.Models.Common\obj\Debug\V
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.Models.Common\obj\Debug\Vehicle.Models.Common.csproj.CopyComplete
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.Models.Common\obj\Debug\Vehicle.Models.Common.dll
 C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.Models.Common\obj\Debug\Vehicle.Models.Common.pdb
+C:\Users\Valentin\Documents\GitHub\VehicleMono\Vehicle.Models.Common\obj\Debug\Vehicle.Models.Common.csprojAssemblyReference.cache

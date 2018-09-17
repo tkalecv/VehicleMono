@@ -23,27 +23,38 @@ namespace Vehicle.MVC.Controllers
         }
 
         //GET: Paged list of all VehicleMakes
-        public ActionResult ListAll(string Sort, int? Page, string Search)
+        public ActionResult ListAll(string sort, int? page, string search, string currentFilter)
         {
-            var SortParameter = new Sorting()
-            { sortOrder = Sort };
-            var FilterParameter = new Filtering
-            { searchString = Search };
-            var PagingParameter = new Paging
-            { page = Page ?? 1, pageSize = 3 };
+            var sortParameter = new Sorting()
+            { sortOrder = sort };
+            var filterParameter = new Filtering
+            { searchString = search };
+            var pagingParameter = new Paging
+            { page = page ?? 1, pageSize = 3 };
 
-            var VMakeList = service.GetAll(SortParameter, FilterParameter, PagingParameter);
+            var vMakeList = service.GetAll(sortParameter, filterParameter, pagingParameter);
+
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = currentFilter;
+            }
+            ViewBag.CurrentFilter = search;
 
 
-            ViewBag.Search = Search;
 
-            ViewBag.NameSort = string.IsNullOrEmpty(Sort) ? "name_desc" : "";
-            ViewBag.AbrvSort = Sort == "Abrv" ? "Abrv_desc" : "Abrv";
-            ViewBag.CurrentSort = Sort;
+            ViewBag.Search = search;
 
-            var VMakeListViewModel = AutoMapper.Mapper.Map<IEnumerable<VehicleMakeViewModel>>(VMakeList);
+            ViewBag.NameSort = string.IsNullOrEmpty(sort) ? "name_desc" : "";
+            ViewBag.AbrvSort = sort == "Abrv" ? "Abrv_desc" : "Abrv";
+            ViewBag.CurrentSort = sort;
 
-            return View(new StaticPagedList<VehicleMakeViewModel>(VMakeListViewModel, VMakeList.GetMetaData()));
+            var vMakeListViewModel = AutoMapper.Mapper.Map<IEnumerable<VehicleMakeViewModel>>(vMakeList);
+
+            return View(new StaticPagedList<VehicleMakeViewModel>(vMakeListViewModel, vMakeList.GetMetaData()));
         }
 
         //GET: Create VehicleMake
@@ -54,13 +65,13 @@ namespace Vehicle.MVC.Controllers
 
         //POST: Create VehicleMake
         [HttpPost]
-        public ActionResult Create(VehicleMakeViewModel VMake)
+        public ActionResult Create(VehicleMakeViewModel vMake)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    service.Create(AutoMapper.Mapper.Map<VehicleMake>(VMake));
+                    service.Create(AutoMapper.Mapper.Map<VehicleMake>(vMake));
                     return RedirectToAction("ListAll");
                 }
             }
@@ -69,7 +80,7 @@ namespace Vehicle.MVC.Controllers
 
                 ModelState.AddModelError("", "Unable to save changes. Try again!");
             }
-            return View(VMake);
+            return View(vMake);
         }
 
         //GET: Find VehicleMake by id and edit
@@ -89,13 +100,13 @@ namespace Vehicle.MVC.Controllers
 
         //POST: Edit VehicleMake and save changes
         [HttpPost]
-        public ActionResult Edit(VehicleMakeViewModel VMake)
+        public ActionResult Edit(VehicleMakeViewModel vMake)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    service.Update(AutoMapper.Mapper.Map<VehicleMake>(VMake));
+                    service.Update(AutoMapper.Mapper.Map<VehicleMake>(vMake));
 
                     return RedirectToAction("ListAll");
 
@@ -106,7 +117,7 @@ namespace Vehicle.MVC.Controllers
 
                 ModelState.AddModelError("", "Unable to save changes. Try again!");
             }
-            return RedirectToAction("Edit", VMake.ID);
+            return RedirectToAction("Edit", vMake.ID);
         }
 
         //GET: Find VehicleMake by id and delete
@@ -124,13 +135,13 @@ namespace Vehicle.MVC.Controllers
 
         //POST: Delete VehicleMake and save changes
         [HttpPost]
-        public ActionResult Delete(VehicleMakeViewModel VMake)
+        public ActionResult Delete(VehicleMakeViewModel vMake)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    service.Delete(AutoMapper.Mapper.Map<VehicleMake>(VMake));
+                    service.Delete(AutoMapper.Mapper.Map<VehicleMake>(vMake));
 
                     return RedirectToAction("ListAll");
 
@@ -141,7 +152,7 @@ namespace Vehicle.MVC.Controllers
 
                 ModelState.AddModelError("", "Unable to delete. Try again!");
             }
-            return RedirectToAction("Delete", VMake.ID);
+            return RedirectToAction("Delete", vMake.ID);
         }
     }
 

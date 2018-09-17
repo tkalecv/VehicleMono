@@ -23,26 +23,37 @@ namespace Vehicle.MVC.Controllers
         }
 
         //GET: Paged list of all VehicleModels
-        public ActionResult ListAll(string Sort, int? Page, string Search)
+        public ActionResult ListAll(string sort, int? page, string search, string currentFilter)
         {
-            var SortParameter = new Sorting()
-            { sortOrder = Sort };
-            var PagingParameter = new Paging
-            { page=Page ?? 1, pageSize = 5 };
-            var FilterParameter = new Filtering
-            { searchString = Search };
+            var sortParameter = new Sorting()
+            { sortOrder = sort };
+            var pagingParameter = new Paging
+            { page=page ?? 1, pageSize = 5 };
+            var filterParameter = new Filtering
+            { searchString = search };
 
-            var VModelList = service.GetAll(SortParameter, FilterParameter, PagingParameter);
+            var vModelList = service.GetAll(sortParameter, filterParameter, pagingParameter);
 
-            ViewBag.Search = Search;
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = currentFilter;
+            }
+            ViewBag.CurrentFilter = search;
 
-            ViewBag.NameSort = string.IsNullOrEmpty(Sort) ? "name_desc" : "";
-            ViewBag.AbrvSort = Sort == "Abrv" ? "Abrv_desc" : "Abrv";
-            ViewBag.CurrentSort = Sort;
 
-            var VModelViewModelList = AutoMapper.Mapper.Map<IEnumerable<VehicleModelViewModel>>(VModelList);
+            ViewBag.Search = search;
 
-            return View(new StaticPagedList<VehicleModelViewModel>(VModelViewModelList, VModelList.GetMetaData()));
+            ViewBag.NameSort = string.IsNullOrEmpty(sort) ? "name_desc" : "";
+            ViewBag.AbrvSort = sort == "Abrv" ? "Abrv_desc" : "Abrv";
+            ViewBag.CurrentSort = sort;
+
+            var vModelViewModelList = AutoMapper.Mapper.Map<IEnumerable<VehicleModelViewModel>>(vModelList);
+
+            return View(new StaticPagedList<VehicleModelViewModel>(vModelViewModelList, vModelList.GetMetaData()));
         }
 
         //GET: Create VehicleModel
@@ -55,13 +66,13 @@ namespace Vehicle.MVC.Controllers
 
         //POST: Create VehicleModel
         [HttpPost]
-        public ActionResult Create(VehicleModelViewModel VModel)
+        public ActionResult Create(VehicleModelViewModel vModel)
         {
             try
             {
                 if(ModelState.IsValid)
                 {
-                    service.Create(AutoMapper.Mapper.Map<VehicleModel>(VModel));
+                    service.Create(AutoMapper.Mapper.Map<VehicleModel>(vModel));
                     return RedirectToAction("ListAll");
                 }
             }
@@ -70,7 +81,7 @@ namespace Vehicle.MVC.Controllers
                 ModelState.AddModelError("", "Unable to save changes. Try again!");
             }
 
-            return View(VModel);
+            return View(vModel);
         }
 
         //GET: Find VehicleModel by id and edit
@@ -88,13 +99,13 @@ namespace Vehicle.MVC.Controllers
         }
         //POST: Edit VehicleModel and save changes
         [HttpPost]
-        public ActionResult Edit(VehicleModelViewModel VModel)
+        public ActionResult Edit(VehicleModelViewModel vModel)
         {
             try
             {
                 if(ModelState.IsValid)
                 {
-                    service.Update(AutoMapper.Mapper.Map<VehicleModel>(VModel));
+                    service.Update(AutoMapper.Mapper.Map<VehicleModel>(vModel));
                     return RedirectToAction("ListAll");
                 }
             }
@@ -102,7 +113,7 @@ namespace Vehicle.MVC.Controllers
             {
                 ModelState.AddModelError("", "Unable to save changes. Try again!");
             }
-            return RedirectToAction("Edit", VModel.ID);
+            return RedirectToAction("Edit", vModel.ID);
         }
 
         //GET: Find VehicleModel by id and delete
@@ -119,13 +130,13 @@ namespace Vehicle.MVC.Controllers
         }
         //POST: Delete VehicleModel and save changes
         [HttpPost]
-        public ActionResult Delete(VehicleModelViewModel VModel)
+        public ActionResult Delete(VehicleModelViewModel vModel)
         {
             try
             {
                 if(ModelState.IsValid)
                 {
-                    service.Delete(AutoMapper.Mapper.Map<VehicleModel>(VModel));
+                    service.Delete(AutoMapper.Mapper.Map<VehicleModel>(vModel));
                     return RedirectToAction("ListAll");
                 }
             }
@@ -135,7 +146,7 @@ namespace Vehicle.MVC.Controllers
                 ModelState.AddModelError("", "Unable to delete. Try again!");
             }
 
-            return RedirectToAction("Delete", VModel.ID);
+            return RedirectToAction("Delete", vModel.ID);
         }
     }
 }
